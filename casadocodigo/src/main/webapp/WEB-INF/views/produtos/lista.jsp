@@ -7,26 +7,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais - Casa do Código</title>
+
+<c:url value="/resources/css" var="cssPath"/>
+<link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
+<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css">
+
+<style type="text/css">
+    body {
+        padding-top: 60px;
+    } 
+</style>
+
 </head>
 <body>
-	<h1>Lista de Produtos</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Casa do Código</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="${s:mvcUrl('PC#listar').build()}">Lista de Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${s:mvcUrl('PC#form').build()}">Cadastro de Produtos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-	<div>${sucesso}</div>
-	<div>${falha}</div>
-
-	<table>
-		<tr>
-			<td>Título</td>
-			<td>Descrição</td>
-			<td>Páginas</td>
-		</tr>
-		<c:forEach items="${produtos}" var="produto">
+    <div class="container">
+		<h1>Lista de Produtos</h1>
+	
+		<div>${sucesso}</div>
+		<div>${falha}</div>
+	
+		<table class="table table-bordered table-striped table-hover">
 			<tr>
-				<td><a href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build()}">${produto.titulo}</a></td>
-				<td>${produto.descricao}</td>
-				<td>${produto.paginas}</td>
+				<th>Título</th>
+				<th>Descrição</th>
+				<th>Páginas</th>
 			</tr>
-		</c:forEach>
-	</table>
+			<c:forEach items="${produtos}" var="produto">
+				<tr>
+					<th><a href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build()}">${produto.titulo}</a></th>
+					<th>${produto.descricao}</th>
+					<th>${produto.paginas}</th>
+				</tr>
+			</c:forEach>
+		</table>
+    </div>
 </body>
 </html>
